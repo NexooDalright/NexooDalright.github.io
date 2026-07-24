@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>China Präsentation · Premium</title>
+    <style>
+        /* ----- Reset & Basis ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1e2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            touch-action: none;
+        }
+
+        .presentation-frame {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background: #f3f0ea;
+            border-radius: 48px;
+            box-shadow: 0 40px 70px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,215,0,0.1);
+            overflow: hidden;
+            position: relative;
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* ----- Slides Container ----- */
+        .slides-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #f3f0ea;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 3.5rem 4.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.96);
+            background: #f3f0ea;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            overflow-y: auto;
+            border-radius: 48px;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            z-index: 20;
+        }
+
+        .slide.exit {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* ----- Scrollbar Styling (clean) ----- */
+        .slide::-webkit-scrollbar {
+            width: 4px;
+            background: transparent;
+        }
+        .slide::-webkit-scrollbar-thumb {
+            background: #b8ab98;
+            border-radius: 20px;
+        }
+
+        /* ----- Typography & Layout ----- */
+        .slide h1 {
+            font-size: 4.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #1f2a3a;
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
+        }
+
+        .slide h2 {
+            font-size: 3.2rem;
+            font-weight: 650;
+            color: #1f2a3a;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #c9a84c;
+            padding-left: 1.2rem;
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #2f3f52;
+            margin-bottom: 0.8rem;
+        }
+
+        .slide p {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: #2b3849;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+        }
+        .slide ul li {
+            font-size: 1.3rem;
+            padding: 0.6rem 0 0.6rem 2.2rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
+            background-size: 1.6rem;
+            color: #1f2c3a;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        /* ----- Title Slide ----- */
+        .slide-title {
+            background: linear-gradient(145deg, #f8f5ef, #ece7de);
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding: 3rem 4rem;
+        }
+        .slide-title h1 {
+            font-size: 5.6rem;
+            font-weight: 700;
+            color: #1d2938;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.2rem;
+        }
+        .slide-title .subhead {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #4a5a6e;
+            letter-spacing: 0.3px;
+            margin-bottom: 1.8rem;
+        }
+        .slide-title .hero-image {
+            width: 70%;
+            max-width: 600px;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 32px;
+            background: #d6cdbc;
+            box-shadow: 0 30px 40px -18px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,215,0,0.15);
+            margin: 0.5rem auto;
+        }
+        .slide-title .meta {
+            font-size: 1.3rem;
+            color: #3f5368;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            padding: 0.5rem 2.5rem;
+            border-radius: 60px;
+            margin-top: 1rem;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        /* ----- Grids & Cards ----- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .grid-3 .card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 0 0 1px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease;
+        }
+        .grid-3 .card strong {
+            display: block;
+            font-size: 1.6rem;
+            color: #b8860b;
+            font-weight: 600;
+        }
+        .grid-3 .card span {
+            font-size: 1.2rem;
+            color: #2a3b4e;
+        }
+
+        .cuisine-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 1.2rem 0;
+        }
+        .cuisine-tags .tag {
+            background: white;
+            border-radius: 60px;
+            padding: 0.5rem 1.8rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1f2c3a;
+            border: 1px solid #dcd3c6;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 0.8rem;
+        }
+        .grid-2 .item {
+            background: white;
+            border-radius: 28px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #e8e0d6;
+            font-size: 1.3rem;
+            color: #1f2c3a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .tipps-box {
+            background: #f0ebe2;
+            border-radius: 32px;
+            padding: 1.5rem 2.2rem;
+            margin: 0.8rem 0;
+        }
+        .tipps-box ul li {
+            background: none !important;
+            padding: 0.7rem 0 !important;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            font-size: 1.3rem;
+        }
+
+        /* ----- Final Slide (Abenteuer) ----- */
+        .slide-final {
+            background: linear-gradient(135deg, #14222e, #1e3347);
+            color: white;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+        .slide-final h2 {
+            color: #f7e9d7;
+            border-left-color: #f5c542;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .slide-final .final-image {
+            max-width: 75%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 40px;
+            margin: 0.8rem auto;
+            box-shadow: 0 30px 50px -10px rgba(0,0,0,0.6);
+            border: 2px solid #d4a13e;
+        }
+        .slide-final p {
+            color: #eedcc8;
+            font-size: 1.6rem;
+            margin-top: 0.8rem;
+        }
+
+        /* ----- Navigation (Dots + Buttons) ----- */
+        .nav-overlay {
+            position: absolute;
+            bottom: 28px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            z-index: 40;
+            pointer-events: none;
+        }
+        .nav-overlay > * {
+            pointer-events: auto;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 14px;
+            background: rgba(20, 28, 40, 0.5);
+            backdrop-filter: blur(12px);
+            padding: 8px 22px;
+            border-radius: 60px;
+            border: 1px solid rgba(255,215,0,0.15);
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            pointer-events: auto;
+        }
+        .dot.active-dot {
+            background: #f5c542;
+            width: 32px;
+            box-shadow: 0 0 20px #f5c54266;
+        }
+
+        .nav-arrow {
+            background: rgba(20, 28, 40, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,215,0,0.12);
+            color: #f5ede1;
+            font-size: 1.6rem;
+            padding: 8px 20px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            pointer-events: auto;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            touch-action: manipulation;
+        }
+        .nav-arrow:active {
+            transform: scale(0.94);
+            background: rgba(212, 161, 62, 0.25);
+        }
+        .nav-arrow:disabled {
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        /* ----- Responsive ----- */
+        @media (max-width: 800px) {
+            .slide { padding: 2rem 2rem; }
+            .slide h1 { font-size: 3.2rem; }
+            .slide h2 { font-size: 2.4rem; }
+            .slide-title h1 { font-size: 3.6rem; }
+            .grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .slide-final h2 { font-size: 2.8rem; }
+            .nav-arrow { padding: 6px 14px; font-size: 1.2rem; min-width: 60px; }
+            .nav-dots { padding: 6px 14px; gap: 10px; }
+            .slide-title .hero-image { width: 90%; }
+            .slide-final .final-image { max-width: 90%; }
+        }
+
+        @media (max-width: 500px) {
+            .slide { padding: 1.5rem; }
+            .slide h1 { font-size: 2.6rem; }
+            .slide p { font-size: 1.1rem; }
+        }
+
+        /* Klick-Hinweis für Touch (unsichtbarer Bereich) */
+        .click-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            cursor: pointer;
+            touch-action: none;
+        }
+        .slide.active .click-area {
+            pointer-events: auto;
+        }
+        .slide:not(.active) .click-area {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation-frame">
+    <div class="slides-wrapper" id="slidesWrapper">
+
+        <!-- ===== TITLE SLIDE ===== -->
+        <div class="slide slide-title active" data-index="0">
+            <div class="click-area" data-action="next"></div>
+            <h1>China</h1>
+            <div class="subhead">Zwischen Himmel und Erde</div>
+            <img class="hero-image" src="https://placecats.com/1600/900?random=10" alt="China Reiseziel" style="background:#cdbea7;">
+            <div class="meta">Maximilian Chen · Klasse 10a</div>
+        </div>
+
+        <!-- ===== FOLIE 1: Allgemeine Infos ===== -->
+        <div class="slide" data-index="1">
+            <div class="click-area" data-action="next"></div>
+            <h2>Allgemeine Informationen</h2>
+            <p><strong>Fläche:</strong> 9,6 Mio. km² · <strong>Einwohner:</strong> 1,4 Milliarden</p>
+            <p><strong>Hauptstadt:</strong> Peking · <strong>Währung:</strong> Renminbi (CNY)</p>
+            <p>China ist das viertgrößte Land der Welt und vereint atemberaubende Natur, moderne Megacities und eine 5000-jährige Kultur. Amtssprache ist Hochchinesisch (Mandarin).</p>
+            <p style="margin-top:0.6rem;">Von der Großen Mauer bis zu den Reisterrassen – ein Land voller Kontraste und Geschichte.</p>
+        </div>
+
+        <!-- ===== FOLIE 2: Sehenswürdigkeiten ===== -->
+        <div class="slide" data-index="2">
+            <div class="click-area" data-action="next"></div>
+            <h2>Sehenswürdigkeiten &amp; Attraktionen</h2>
+            <div class="grid-3">
+                <div class="card"><strong>Verbotene Stadt</strong><span>Peking · 980 Gebäude</span></div>
+                <div class="card"><strong>Terrakotta-Armee</strong><span>Xi'an · 8000 Krieger</span></div>
+                <div class="card"><strong>Zhangjiajie</strong><span>Sandsteinberge · Avatar</span></div>
+            </div>
+            <p style="margin-top:1.2rem;">Weitere Highlights: Große Mauer, Li-Fluss, die modernen Wolkenkratzer Shanghais und die heiligen Berge des Daoismus.</p>
+        </div>
+
+        <!-- ===== FOLIE 3: Küche ===== -->
+        <div class="slide" data-index="3">
+            <div class="click-area" data-action="next"></div>
+            <h2>Besonderheiten der Küche</h2>
+            <div class="cuisine-tags">
+                <span class="tag">Dim Sum</span>
+                <span class="tag">Peking-Ente</span>
+                <span class="tag">Nudeln &amp; Baozi</span>
+                <span class="tag">Szechuan-Pfeffer</span>
+                <span class="tag">Tee-Kultur</span>
+                <span class="tag">Tofu &amp; Soja</span>
+            </div>
+            <p>Die chinesische Küche ist extrem vielfältig: von scharf (Szechuan) bis mild (Kantonesisch). Frische Zutaten, die Balance der Aromen und die Kunst des Wok-Bratens stehen im Mittelpunkt.</p>
+            <p>Reis, Nudeln und fermentierte Speisen sind Grundnahrungsmittel – jede Region hat ihre eigenen Spezialitäten.</p>
+        </div>
+
+        <!-- ===== FOLIE 4: Abenteuer & Freizeit ===== -->
+        <div class="slide" data-index="4">
+            <div class="click-area" data-action="next"></div>
+            <h2>Abenteuer &amp; Freizeit</h2>
+            <div class="grid-2">
+                <div class="item">Klettern an den Zhangjiajie-Felsen</div>
+                <div class="item">Radfahren auf der Chinesischen Mauer</div>
+                <div class="item">Trekking in der Gelben Bergregion</div>
+                <div class="item">Bootsfahrt auf dem Li-Fluss</div>
+            </div>
+            <p style="margin-top:1rem;">Ob Wandern, Flusskreuzfahrten, Skifahren oder Städtetrips – China bietet Outdoor-Abenteuer für jeden Typ.</p>
+        </div>
+
+        <!-- ===== FOLIE 5: Tipps für Reisende ===== -->
+        <div class="slide" data-index="5">
+            <div class="click-area" data-action="next"></div>
+            <h2>Tipps für Reisende</h2>
+            <div class="tipps-box">
+                <ul>
+                    <li>Bezahlung per WeChat / Alipay (Cash ist selten)</li>
+                    <li>Übersetzungs-App bereithalten</li>
+                    <li>Reiseapotheke &amp; Insektenschutz</li>
+                    <li>Hochgeschwindigkeitszüge nutzen</li>
+                    <li>Respekt vor lokalen Bräuchen</li>
+                </ul>
+            </div>
+            <p>Visum rechtzeitig beantragen und das Wetter im Auge behalten – China ist das ganze Jahr über eine Reise wert.</p>
+        </div>
+
+        <!-- ===== FOLIE 6: Bereit für das Abenteuer ===== -->
+        <div class="slide slide-final" data-index="6">
+            <div class="click-area" data-action="next"></div>
+            <h2>Bereit für das Abenteuer</h2>
+            <img class="final-image" src="https://placecats.com/1600/901?random=20" alt="Packendes Bild China" style="background:#3d4e5a;">
+            <p>Entdecke das Reich der Mitte – unvergesslich!</p>
+        </div>
+
+        <!-- ===== NAVIGATION (Dots + Pfeile) ===== -->
+        <div class="nav-overlay">
+            <button class="nav-arrow" id="prevBtn" aria-label="Vorherige Folie">Zurück</button>
+            <div class="nav-dots" id="dotsContainer"></div>
+            <button class="nav-arrow" id="nextBtn" aria-label="Nächste Folie">Weiter</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        let current = 0;
+        let isAnimating = false;
+
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dotsContainer');
+
+        // Dots generieren
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active-dot');
+            dot.dataset.index = i;
+            dot.setAttribute('aria-label', `Folie ${i+1}`);
+            dotsContainer.appendChild(dot);
+        }
+        const dots = document.querySelectorAll('.dot');
+
+        function updateUI(index, instant = false) {
+            // Slides
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'exit');
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.add('exit');
+                }
+            });
+
+            // Dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active-dot', i === index);
+            });
+
+            // Buttons
+            prevBtn.disabled = (index === 0);
+            nextBtn.disabled = (index === total - 1);
+        }
+
+        function goTo(index, direction = 'next') {
+            if (isAnimating) return;
+            if (index === current) return;
+            if (index < 0 || index >= total) return;
+
+            isAnimating = true;
+
+            // Kurz Exit-Effekt für aktuelle Folie
+            slides[current].classList.remove('active');
+            slides[current].classList.add('exit');
+
+            setTimeout(() => {
+                current = index;
+                updateUI(current);
+                isAnimating = false;
+            }, 70);
+        }
+
+        // ---- Event-Listener ----
+        function handleNext() {
+            if (current < total - 1) goTo(current + 1);
+        }
+        function handlePrev() {
+            if (current > 0) goTo(current - 1);
+        }
+
+        prevBtn.addEventListener('click', handlePrev);
+        nextBtn.addEventListener('click', handleNext);
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                if (i !== current) goTo(i);
+            });
+        });
+
+        // ---- Klick auf "click-area" (Tippen auf Folie) ----
+        document.querySelectorAll('.click-area').forEach((area) => {
+            area.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleNext();
+            });
+            // Touch-Unterstützung: verhindert Doppelauslösung
+            area.addEventListener('touchstart', (e) => {
+                // Nur wenn nicht gescrollt wird
+                e.preventDefault();
+            }, { passive: false });
+            area.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                handleNext();
+            }, { passive: false });
+        });
+
+        // ---- Swipe (iPad / Touch) ----
+        let touchStartX = 0;
+        let touchStartY = 0;
+        const wrapper = document.getElementById('slidesWrapper');
+
+        wrapper.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', (e) => {
+            if (touchStartX === 0) return;
+            const touchEnd = e.changedTouches[0];
+            const deltaX = touchEnd.clientX - touchStartX;
+            const deltaY = touchEnd.clientY - touchStartY;
+
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+                if (deltaX < 0) {
+                    handleNext();
+                } else if (deltaX > 0) {
+                    handlePrev();
+                }
+            }
+            touchStartX = 0;
+        }, { passive: true });
+
+        // ---- Tastatur (für externe Tastatur am iPad) ----
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                handleNext();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                handlePrev();
+            }
+        });
+
+        // ---- Initiale UI ----
+        updateUI(0);
+    })();
+</script>
+</body>
+</html>
