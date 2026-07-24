@@ -13,13 +13,13 @@
         }
 
         body {
-            background: #1a1e2a;
+            background: #0d1117;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 20px;
+            padding: 16px;
             margin: 0;
             touch-action: none;
         }
@@ -28,12 +28,11 @@
             width: 100%;
             max-width: 1200px;
             aspect-ratio: 16 / 9;
-            background: #f3f0ea;
+            background: #f0ece4;
             border-radius: 48px;
-            box-shadow: 0 40px 70px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,215,0,0.1);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,215,0,0.08);
             overflow: hidden;
             position: relative;
-            transition: box-shadow 0.3s ease;
         }
 
         /* ----- Slides Container ----- */
@@ -41,7 +40,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            background: #f3f0ea;
+            background: #f0ece4;
         }
 
         .slide {
@@ -50,7 +49,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 3.5rem 4.5rem;
+            padding: 3.2rem 4.2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -58,7 +57,7 @@
             pointer-events: none;
             transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             transform: scale(0.96);
-            background: #f3f0ea;
+            background: #f0ece4;
             will-change: opacity, transform;
             backface-visibility: hidden;
             overflow-y: auto;
@@ -78,7 +77,7 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        /* ----- Scrollbar Styling (clean) ----- */
+        /* ----- Scrollbar Styling ----- */
         .slide::-webkit-scrollbar {
             width: 4px;
             background: transparent;
@@ -90,22 +89,22 @@
 
         /* ----- Typography & Layout ----- */
         .slide h1 {
-            font-size: 4.8rem;
+            font-size: 5rem;
             font-weight: 700;
             letter-spacing: -0.03em;
-            color: #1f2a3a;
+            color: #1a2535;
             line-height: 1.1;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .slide h2 {
-            font-size: 3.2rem;
+            font-size: 3.4rem;
             font-weight: 650;
-            color: #1f2a3a;
+            color: #1a2535;
             letter-spacing: -0.02em;
             margin-bottom: 1.2rem;
             border-left: 6px solid #c9a84c;
-            padding-left: 1.2rem;
+            padding-left: 1.4rem;
         }
 
         .slide h3 {
@@ -116,10 +115,10 @@
         }
 
         .slide p {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             line-height: 1.7;
-            color: #2b3849;
-            margin-bottom: 0.8rem;
+            color: #283544;
+            margin-bottom: 0.7rem;
             font-weight: 400;
         }
 
@@ -128,8 +127,8 @@
             padding: 0;
         }
         .slide ul li {
-            font-size: 1.3rem;
-            padding: 0.6rem 0 0.6rem 2.2rem;
+            font-size: 1.25rem;
+            padding: 0.6rem 0 0.6rem 2.4rem;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
             background-size: 1.6rem;
             color: #1f2c3a;
@@ -138,46 +137,51 @@
 
         /* ----- Title Slide ----- */
         .slide-title {
-            background: linear-gradient(145deg, #f8f5ef, #ece7de);
+            background: linear-gradient(145deg, #f8f5ef, #e8e2d7);
             align-items: center;
             text-align: center;
             justify-content: center;
-            padding: 3rem 4rem;
+            padding: 2.5rem 3rem;
         }
         .slide-title h1 {
-            font-size: 5.6rem;
+            font-size: 6rem;
             font-weight: 700;
-            color: #1d2938;
+            color: #1a2535;
             letter-spacing: -0.02em;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
         }
         .slide-title .subhead {
             font-size: 1.8rem;
             font-weight: 400;
             color: #4a5a6e;
             letter-spacing: 0.3px;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.2rem;
         }
         .slide-title .hero-image {
-            width: 70%;
-            max-width: 600px;
+            width: 65%;
+            max-width: 550px;
             aspect-ratio: 16/9;
             object-fit: cover;
             border-radius: 32px;
             background: #d6cdbc;
             box-shadow: 0 30px 40px -18px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,215,0,0.15);
-            margin: 0.5rem auto;
+            border: 1px solid rgba(255,215,0,0.12);
+            margin: 0.3rem auto;
         }
         .slide-title .meta {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #3f5368;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(8px);
-            padding: 0.5rem 2.5rem;
+            padding: 0.5rem 2.8rem;
             border-radius: 60px;
-            margin-top: 1rem;
-            border: 1px solid rgba(255,215,0,0.2);
+            margin-top: 0.8rem;
+            border: 1px solid rgba(255,215,0,0.15);
+            font-weight: 500;
+        }
+        .slide-title .meta span {
+            color: #b8860b;
+            font-weight: 600;
         }
 
         /* ----- Grids & Cards ----- */
@@ -185,7 +189,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.8rem;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
         .grid-3 .card {
             background: white;
@@ -197,9 +201,10 @@
         }
         .grid-3 .card strong {
             display: block;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             color: #b8860b;
             font-weight: 600;
+            margin-bottom: 0.3rem;
         }
         .grid-3 .card span {
             font-size: 1.2rem;
@@ -210,13 +215,13 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem 1.2rem;
-            margin: 1.2rem 0;
+            margin: 1rem 0 0.8rem;
         }
         .cuisine-tags .tag {
             background: white;
             border-radius: 60px;
-            padding: 0.5rem 1.8rem;
-            font-size: 1.3rem;
+            padding: 0.5rem 2rem;
+            font-size: 1.25rem;
             font-weight: 500;
             color: #1f2c3a;
             border: 1px solid #dcd3c6;
@@ -227,7 +232,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            margin-top: 0.8rem;
+            margin-top: 0.6rem;
         }
         .grid-2 .item {
             background: white;
@@ -243,55 +248,66 @@
             background: #f0ebe2;
             border-radius: 32px;
             padding: 1.5rem 2.2rem;
-            margin: 0.8rem 0;
+            margin: 0.6rem 0;
         }
         .tipps-box ul li {
             background: none !important;
             padding: 0.7rem 0 !important;
             border-bottom: 1px solid rgba(0,0,0,0.04);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
         }
 
         /* ----- Final Slide (Abenteuer) ----- */
         .slide-final {
-            background: linear-gradient(135deg, #14222e, #1e3347);
+            background: linear-gradient(145deg, #0f1e2b, #1a2d3f);
             color: white;
             align-items: center;
             text-align: center;
             justify-content: center;
-            padding: 3rem;
+            padding: 2.5rem 3rem;
         }
         .slide-final h2 {
             color: #f7e9d7;
             border-left-color: #f5c542;
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 4.2rem;
+            margin-bottom: 0.5rem;
+            border-left: none;
+            padding-left: 0;
         }
         .slide-final .final-image {
-            max-width: 75%;
+            max-width: 70%;
             aspect-ratio: 16/9;
             object-fit: cover;
             border-radius: 40px;
-            margin: 0.8rem auto;
-            box-shadow: 0 30px 50px -10px rgba(0,0,0,0.6);
+            margin: 0.5rem auto;
+            box-shadow: 0 30px 50px -10px rgba(0,0,0,0.7);
             border: 2px solid #d4a13e;
         }
         .slide-final p {
             color: #eedcc8;
             font-size: 1.6rem;
-            margin-top: 0.8rem;
+            margin-top: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .slide-final .final-sub {
+            color: #b8a58a;
+            font-size: 1.1rem;
+            margin-top: 0.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         /* ----- Navigation (Dots + Buttons) ----- */
         .nav-overlay {
             position: absolute;
-            bottom: 28px;
+            bottom: 24px;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
             z-index: 40;
             pointer-events: none;
         }
@@ -302,17 +318,17 @@
         .nav-dots {
             display: flex;
             gap: 14px;
-            background: rgba(20, 28, 40, 0.5);
-            backdrop-filter: blur(12px);
-            padding: 8px 22px;
+            background: rgba(15, 22, 32, 0.55);
+            backdrop-filter: blur(14px);
+            padding: 8px 24px;
             border-radius: 60px;
-            border: 1px solid rgba(255,215,0,0.15);
+            border: 1px solid rgba(255,215,0,0.1);
         }
         .dot {
             width: 12px;
             height: 12px;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
@@ -321,17 +337,17 @@
         }
         .dot.active-dot {
             background: #f5c542;
-            width: 32px;
-            box-shadow: 0 0 20px #f5c54266;
+            width: 34px;
+            box-shadow: 0 0 24px #f5c54255;
         }
 
         .nav-arrow {
-            background: rgba(20, 28, 40, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,215,0,0.12);
+            background: rgba(15, 22, 32, 0.55);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,215,0,0.08);
             color: #f5ede1;
-            font-size: 1.6rem;
-            padding: 8px 20px;
+            font-size: 1.5rem;
+            padding: 8px 22px;
             border-radius: 60px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -345,35 +361,14 @@
         }
         .nav-arrow:active {
             transform: scale(0.94);
-            background: rgba(212, 161, 62, 0.25);
+            background: rgba(212, 161, 62, 0.2);
         }
         .nav-arrow:disabled {
-            opacity: 0.2;
+            opacity: 0.15;
             pointer-events: none;
         }
 
-        /* ----- Responsive ----- */
-        @media (max-width: 800px) {
-            .slide { padding: 2rem 2rem; }
-            .slide h1 { font-size: 3.2rem; }
-            .slide h2 { font-size: 2.4rem; }
-            .slide-title h1 { font-size: 3.6rem; }
-            .grid-3 { grid-template-columns: 1fr; gap: 1rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .slide-final h2 { font-size: 2.8rem; }
-            .nav-arrow { padding: 6px 14px; font-size: 1.2rem; min-width: 60px; }
-            .nav-dots { padding: 6px 14px; gap: 10px; }
-            .slide-title .hero-image { width: 90%; }
-            .slide-final .final-image { max-width: 90%; }
-        }
-
-        @media (max-width: 500px) {
-            .slide { padding: 1.5rem; }
-            .slide h1 { font-size: 2.6rem; }
-            .slide p { font-size: 1.1rem; }
-        }
-
-        /* Klick-Hinweis für Touch (unsichtbarer Bereich) */
+        /* ----- Click Area (Tippen auf Folie) ----- */
         .click-area {
             position: absolute;
             top: 0;
@@ -390,6 +385,42 @@
         .slide:not(.active) .click-area {
             pointer-events: none;
         }
+
+        /* ----- Responsive ----- */
+        @media (max-width: 900px) {
+            .slide { padding: 2.2rem 2.8rem; }
+            .slide h1 { font-size: 3.6rem; }
+            .slide h2 { font-size: 2.6rem; }
+            .slide-title h1 { font-size: 4.2rem; }
+            .slide-title .hero-image { width: 80%; }
+            .slide-final h2 { font-size: 3.4rem; }
+            .slide-final .final-image { max-width: 85%; }
+            .grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .nav-arrow { padding: 6px 14px; font-size: 1.2rem; min-width: 60px; }
+            .nav-dots { padding: 6px 14px; gap: 10px; }
+        }
+
+        @media (max-width: 550px) {
+            .slide { padding: 1.5rem; }
+            .slide h1 { font-size: 2.8rem; }
+            .slide p { font-size: 1.1rem; }
+            .slide-title h1 { font-size: 3.2rem; }
+            .slide-title .hero-image { width: 95%; }
+        }
+
+        /* Image scaling: always cover, never stretch */
+        .slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .hero-image, .final-image {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -402,8 +433,8 @@
             <div class="click-area" data-action="next"></div>
             <h1>China</h1>
             <div class="subhead">Zwischen Himmel und Erde</div>
-            <img class="hero-image" src="https://placecats.com/1600/900?random=10" alt="China Reiseziel" style="background:#cdbea7;">
-            <div class="meta">Maximilian Chen · Klasse 10a</div>
+            <img class="hero-image" src="https://picsum.photos/1600/900?random=10" alt="China Reiseziel">
+            <div class="meta"><span>Pavel</span> &amp; <span>Liam</span> · Klasse 6c</div>
         </div>
 
         <!-- ===== FOLIE 1: Allgemeine Infos ===== -->
@@ -411,9 +442,9 @@
             <div class="click-area" data-action="next"></div>
             <h2>Allgemeine Informationen</h2>
             <p><strong>Fläche:</strong> 9,6 Mio. km² · <strong>Einwohner:</strong> 1,4 Milliarden</p>
-            <p><strong>Hauptstadt:</strong> Peking · <strong>Währung:</strong> Renminbi (CNY)</p>
-            <p>China ist das viertgrößte Land der Welt und vereint atemberaubende Natur, moderne Megacities und eine 5000-jährige Kultur. Amtssprache ist Hochchinesisch (Mandarin).</p>
-            <p style="margin-top:0.6rem;">Von der Großen Mauer bis zu den Reisterrassen – ein Land voller Kontraste und Geschichte.</p>
+            <p><strong>Hauptstadt:</strong> Peking · <strong>Währung:</strong> Renminbi (CNY) · <strong>Amtssprache:</strong> Hochchinesisch (Mandarin)</p>
+            <p>China ist das viertgrößte Land der Welt und vereint atemberaubende Natur, moderne Megacities und eine 5000-jährige Kultur. Das Land grenzt an 14 Staaten und hat eine der ältesten Zivilisationen der Menschheit.</p>
+            <p style="margin-top:0.4rem;">Von der Großen Mauer bis zu den Reisterrassen – ein Land voller Kontraste und Geschichte. Die Wirtschaft ist die zweitgrößte der Welt.</p>
         </div>
 
         <!-- ===== FOLIE 2: Sehenswürdigkeiten ===== -->
@@ -421,11 +452,11 @@
             <div class="click-area" data-action="next"></div>
             <h2>Sehenswürdigkeiten &amp; Attraktionen</h2>
             <div class="grid-3">
-                <div class="card"><strong>Verbotene Stadt</strong><span>Peking · 980 Gebäude</span></div>
-                <div class="card"><strong>Terrakotta-Armee</strong><span>Xi'an · 8000 Krieger</span></div>
-                <div class="card"><strong>Zhangjiajie</strong><span>Sandsteinberge · Avatar</span></div>
+                <div class="card"><strong>Verbotene Stadt</strong><span>Peking · 980 Gebäude · UNESCO</span></div>
+                <div class="card"><strong>Terrakotta-Armee</strong><span>Xi'an · 8000 Krieger · 200 v. Chr.</span></div>
+                <div class="card"><strong>Zhangjiajie</strong><span>Sandsteinberge · Avatar · UNESCO</span></div>
             </div>
-            <p style="margin-top:1.2rem;">Weitere Highlights: Große Mauer, Li-Fluss, die modernen Wolkenkratzer Shanghais und die heiligen Berge des Daoismus.</p>
+            <p style="margin-top:1rem;">Weitere Highlights: Die <strong>Große Mauer</strong> (über 21.000 km), der <strong>Li-Fluss</strong> mit seinen Karstbergen, die modernen Wolkenkratzer <strong>Shanghais</strong> und die heiligen Berge des Daoismus wie der <strong>Huangshan</strong>.</p>
         </div>
 
         <!-- ===== FOLIE 3: Küche ===== -->
@@ -439,9 +470,11 @@
                 <span class="tag">Szechuan-Pfeffer</span>
                 <span class="tag">Tee-Kultur</span>
                 <span class="tag">Tofu &amp; Soja</span>
+                <span class="tag">Hot Pot</span>
+                <span class="tag">Jiaozi</span>
             </div>
-            <p>Die chinesische Küche ist extrem vielfältig: von scharf (Szechuan) bis mild (Kantonesisch). Frische Zutaten, die Balance der Aromen und die Kunst des Wok-Bratens stehen im Mittelpunkt.</p>
-            <p>Reis, Nudeln und fermentierte Speisen sind Grundnahrungsmittel – jede Region hat ihre eigenen Spezialitäten.</p>
+            <p>Die chinesische Küche ist extrem vielfältig: von <strong>scharf</strong> (Szechuan) bis <strong>mild</strong> (Kantonesisch). Frische Zutaten, die Balance der Aromen und die Kunst des Wok-Bratens stehen im Mittelpunkt.</p>
+            <p>Reis, Nudeln und fermentierte Speisen sind Grundnahrungsmittel. Jede Region hat ihre eigenen Spezialitäten – von Peking-Ente über Dim Sum bis hin zu würzigem Hot Pot.</p>
         </div>
 
         <!-- ===== FOLIE 4: Abenteuer & Freizeit ===== -->
@@ -449,12 +482,14 @@
             <div class="click-area" data-action="next"></div>
             <h2>Abenteuer &amp; Freizeit</h2>
             <div class="grid-2">
-                <div class="item">Klettern an den Zhangjiajie-Felsen</div>
-                <div class="item">Radfahren auf der Chinesischen Mauer</div>
-                <div class="item">Trekking in der Gelben Bergregion</div>
-                <div class="item">Bootsfahrt auf dem Li-Fluss</div>
+                <div class="item">🧗‍♂️ Klettern an den Zhangjiajie-Felsen</div>
+                <div class="item">🚴‍♂️ Radfahren auf der Chinesischen Mauer</div>
+                <div class="item">🏞️ Trekking im Huangshan-Gebirge</div>
+                <div class="item">🛶 Bootsfahrt auf dem Li-Fluss</div>
+                <div class="item">🎿 Skifahren in Harbin (Eisfestival)</div>
+                <div class="item">🏙️ Städtetrip nach Shanghai &amp; Peking</div>
             </div>
-            <p style="margin-top:1rem;">Ob Wandern, Flusskreuzfahrten, Skifahren oder Städtetrips – China bietet Outdoor-Abenteuer für jeden Typ.</p>
+            <p style="margin-top:0.8rem;">Ob Wandern, Flusskreuzfahrten, Skifahren oder Städtetrips – China bietet Outdoor-Abenteuer für jeden Typ. Besonders beliebt sind Trekkingtouren in den südlichen Provinzen und die Erforschung der tibetischen Hochebene.</p>
         </div>
 
         <!-- ===== FOLIE 5: Tipps für Reisende ===== -->
@@ -463,25 +498,27 @@
             <h2>Tipps für Reisende</h2>
             <div class="tipps-box">
                 <ul>
-                    <li>Bezahlung per WeChat / Alipay (Cash ist selten)</li>
-                    <li>Übersetzungs-App bereithalten</li>
-                    <li>Reiseapotheke &amp; Insektenschutz</li>
-                    <li>Hochgeschwindigkeitszüge nutzen</li>
-                    <li>Respekt vor lokalen Bräuchen</li>
+                    <li><strong>Bezahlung:</strong> WeChat / Alipay (Cash ist selten) – unbedingt vorbereiten</li>
+                    <li><strong>Sprache:</strong> Übersetzungs-App bereithalten – Englisch wird wenig gesprochen</li>
+                    <li><strong>Gesundheit:</strong> Reiseapotheke &amp; Insektenschutz mitnehmen</li>
+                    <li><strong>Transport:</strong> Hochgeschwindigkeitszüge nutzen – das Netz ist exzellent</li>
+                    <li><strong>Kultur:</strong> Respekt vor lokalen Bräuchen – z.B. Schuhe ausziehen</li>
+                    <li><strong>Visum:</strong> rechtzeitig beantragen – kann bis zu 2 Wochen dauern</li>
                 </ul>
             </div>
-            <p>Visum rechtzeitig beantragen und das Wetter im Auge behalten – China ist das ganze Jahr über eine Reise wert.</p>
+            <p>Die beste Reisezeit ist Frühling (April–Mai) und Herbst (September–Oktober). Das Wetter ist dann mild und die Landschaft besonders schön.</p>
         </div>
 
         <!-- ===== FOLIE 6: Bereit für das Abenteuer ===== -->
         <div class="slide slide-final" data-index="6">
             <div class="click-area" data-action="next"></div>
             <h2>Bereit für das Abenteuer</h2>
-            <img class="final-image" src="https://placecats.com/1600/901?random=20" alt="Packendes Bild China" style="background:#3d4e5a;">
+            <img class="final-image" src="https://picsum.photos/1600/901?random=20" alt="Packendes Bild China">
             <p>Entdecke das Reich der Mitte – unvergesslich!</p>
+            <div class="final-sub">China · Pavel &amp; Liam · Klasse 6c</div>
         </div>
 
-        <!-- ===== NAVIGATION (Dots + Pfeile) ===== -->
+        <!-- ===== NAVIGATION ===== -->
         <div class="nav-overlay">
             <button class="nav-arrow" id="prevBtn" aria-label="Vorherige Folie">Zurück</button>
             <div class="nav-dots" id="dotsContainer"></div>
@@ -512,8 +549,7 @@
         }
         const dots = document.querySelectorAll('.dot');
 
-        function updateUI(index, instant = false) {
-            // Slides
+        function updateUI(index) {
             slides.forEach((slide, i) => {
                 slide.classList.remove('active', 'exit');
                 if (i === index) {
@@ -523,24 +559,20 @@
                 }
             });
 
-            // Dots
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active-dot', i === index);
             });
 
-            // Buttons
             prevBtn.disabled = (index === 0);
             nextBtn.disabled = (index === total - 1);
         }
 
-        function goTo(index, direction = 'next') {
+        function goTo(index) {
             if (isAnimating) return;
             if (index === current) return;
             if (index < 0 || index >= total) return;
 
             isAnimating = true;
-
-            // Kurz Exit-Effekt für aktuelle Folie
             slides[current].classList.remove('active');
             slides[current].classList.add('exit');
 
@@ -551,7 +583,6 @@
             }, 70);
         }
 
-        // ---- Event-Listener ----
         function handleNext() {
             if (current < total - 1) goTo(current + 1);
         }
@@ -568,15 +599,13 @@
             });
         });
 
-        // ---- Klick auf "click-area" (Tippen auf Folie) ----
+        // Klick auf Folie (Tippen)
         document.querySelectorAll('.click-area').forEach((area) => {
             area.addEventListener('click', (e) => {
                 e.stopPropagation();
                 handleNext();
             });
-            // Touch-Unterstützung: verhindert Doppelauslösung
             area.addEventListener('touchstart', (e) => {
-                // Nur wenn nicht gescrollt wird
                 e.preventDefault();
             }, { passive: false });
             area.addEventListener('touchend', (e) => {
@@ -585,7 +614,7 @@
             }, { passive: false });
         });
 
-        // ---- Swipe (iPad / Touch) ----
+        // Swipe
         let touchStartX = 0;
         let touchStartY = 0;
         const wrapper = document.getElementById('slidesWrapper');
@@ -603,16 +632,13 @@
             const deltaY = touchEnd.clientY - touchStartY;
 
             if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
-                if (deltaX < 0) {
-                    handleNext();
-                } else if (deltaX > 0) {
-                    handlePrev();
-                }
+                if (deltaX < 0) handleNext();
+                else if (deltaX > 0) handlePrev();
             }
             touchStartX = 0;
         }, { passive: true });
 
-        // ---- Tastatur (für externe Tastatur am iPad) ----
+        // Tastatur
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
                 e.preventDefault();
@@ -623,7 +649,6 @@
             }
         });
 
-        // ---- Initiale UI ----
         updateUI(0);
     })();
 </script>
